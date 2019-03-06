@@ -1,0 +1,105 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script>        
+        var script = document.createElement('script');
+        script.onload = function () {
+            //do stuff with the script
+        };
+        script.src = parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'jquery-1.10.2.js';
+        document.head.appendChild(script); //or something of the likes
+
+		function getParam(){
+			parent.PwCTW.CKEdit.insertHTML($('input[name=Param]:checked').val());
+			parent.CloseBlockUI();
+		}
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'custom-PwCfont';
+            src: local("Microsoft JhengHei");
+            unicode-range: U+4E00-9FFF;
+        }
+
+        @font-face {
+            font-family: 'custom-PwCfont';
+            src: local("Georgia");
+            unicode-range: U+00-024F;
+        }
+
+        * {
+            font-family: 'custom-PwCfont';
+            font-size: 15px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #MesgSection {
+            background-color: #D04A02;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            height: 45px;
+            line-height: 45px;
+            padding: 0 15px;
+            border: 1px solid #D04A02;
+            border-radius: 5px 5px 0 0;
+        }
+
+        input[type=button] {
+            color: #D04A02;
+            background-color: #fff;
+            padding: 6px 40px;
+            margin: 0 25px;
+            line-height: 22px;
+            border-radius: 5px;
+            border: 1px solid #D04A02;
+        }
+
+            input[type=button]:hover {
+                color: #fff;
+                background-color: #D04A02;
+            }
+
+        table {
+            margin: 15px auto;
+            height: 50px;
+            line-height: 48px;
+            border-collapse: collapse;
+        }
+
+            table tbody tr {
+                display: block;
+            }
+
+                table tbody tr td:not(:last-child) {
+                    padding-right: 20px;
+                }
+    </style>
+</head>
+<body>
+    <div id="MesgSection">Insert A Parameter</div>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td><input type="radio" name="Param" value="{{QRCode}}" >QRCode</input></td>
+                    <td><input type="radio" name="Param" value="{{學員姓名}}" >學員姓名</input></td>
+                    <td><input type="radio" name="Param" value="{{報到編號}}" >報到編號</input></td>
+                    <td><input type="radio" name="Param" value="{{課程名稱}}" >課程名稱</input></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="background-color: #f6f6f6; height: 55px; line-height: 55px; text-align: center; border-radius: 0 0 5px 5px; border-top: 1px solid #ddd;">
+        <input type="button" value="插入" onclick="getParam();" ></input>
+        <input type="button" value="關閉" onclick="parent.CloseBlockUI();" ></input>
+    </div>
+</body>
+</html>

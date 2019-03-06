@@ -1,0 +1,388 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script>
+        var script = document.createElement('script');
+        script.onload = function () {
+            //do stuff with the script
+            var sContent = '';
+
+            sContent += '<td><input id="t1" type="radio" name="Table" value="Template1" ></input><img name="Table" src="' + parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'template-pic-1.jpg" onclick="$(\'#t1\')[0].checked = true" /></td>';
+            sContent += '<td><input id="t2" type="radio" name="Table" value="Template2" ></input><img name="Table" src="' + parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'template-pic-2.jpg" onclick="$(\'#t2\')[0].checked = true" /></td>';
+            sContent += '<td><input id="t3" type="radio" name="Table" value="Template3" ></input><img name="Table" src="' + parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'template-pic-3.jpg" onclick="$(\'#t3\')[0].checked = true" /></td>';
+            sContent += '<td><input id="t4" type="radio" name="Table" value="Template4" ></input><img name="Table" src="' + parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'template-pic-4.jpg" onclick="$(\'#t4\')[0].checked = true" /></td>';
+            sContent += '<td><input id="t5" type="radio" name="Table" value="Template5" ></input><img name="Table" src="' + parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'template-pic-5.jpg" onclick="$(\'#t5\')[0].checked = true" /></td>';
+                        
+			$('#trParamList').append(sContent);
+        };
+        script.src = parent.PwCTW.CKEdit.ProjectCKEditorRootPath + 'jquery-1.10.2.js';
+        document.head.appendChild(script); //or something of the likes
+
+        function getParam() {
+            var nRow;
+            var nCol;
+            var sWidth;
+            var sHTMLContent = '';
+            var sTemplateID = $('input[name=Table]:checked').val();
+            var sHeadColList = '';
+            var sColList1 = '';
+            var sColList2 = '';
+
+            if ($.isNumeric($('#btnRow').val()) && parseInt($('#btnRow').val()) > 0
+			   && $.isNumeric($('#btnCol').val()) && parseInt($('#btnCol').val()) > 0
+			   && $.isNumeric($('#btnWidth').val().replace('%', '')) && parseInt($('#btnWidth').val().replace('%', '')) > 0) {
+                nRow = parseInt($('#btnRow').val());
+                nCol = parseInt($('#btnCol').val());
+                sWidth = $('#btnWidth').val();
+
+                //用 TemplateID 選 Table tag
+                switch (sTemplateID) {
+                    case 'Template1':
+                        sHTMLContent += '<table width="' + sWidth + '" style="border-collapse: collapse; font-family: Georgia, 微軟正黑體;">';
+                        break;
+                    case 'Template2':
+                        sHTMLContent += '<table width="' + sWidth + '" style="border-collapse: collapse; font-family: Georgia, 微軟正黑體;">';
+                        break;
+                    case 'Template3':
+                        sHTMLContent += '<table width="' + sWidth + '" style="border-collapse: collapse; font-family: Georgia, 微軟正黑體;">';
+                        break;
+                    case 'Template4':
+                        sHTMLContent += '<table width="' + sWidth + '" style="border-collapse:collapse; font-family: Georgia, 微軟正黑體;">';
+                        break;
+                    case 'Template5':
+                        sHTMLContent += '<table width="' + sWidth + '" style="border-collapse: collapse; width: 30%; font-family: Georgia, 微軟正黑體;">';
+                        break;
+                    default:
+                        alert('沒有這個範本 table 設定: ' + sTemplateID);
+                        return false;
+                        break;
+                }
+
+                //用 TamplateID 選 Col tag
+                switch (sTemplateID) {
+                    case 'Template1':
+                        for (i = 0; i < nCol; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //第一欄特別處理 (只 show 一次，不會重複)
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                                case 0:
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                                case 1:
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template2':
+                        for (i = 0; i < nCol; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //第一欄特別處理 (只 show 一次，不會重複)
+                                    sHeadColList += '<td style="border:1px solid #dc6900;border-left-color:#fff;border-bottom-color:#fff;border-right-color:#fff;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border:1px solid #fff;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList2 += '<td style="border:1px solid #fff;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    break;
+                                case 0:
+                                    sHeadColList += '<td style="border:1px solid #dc6900;border-left-color:#fff;border-bottom-color:#fff;border-right-color:#fff;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #fff;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #fff;padding: 8px;"></td>';
+                                    break;
+                                case 1:
+                                    sHeadColList += '<td style="border:1px solid #dc6900;border-left-color:#fff;border-bottom-color:#fff;border-right-color:#fff;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #fff;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #fff;padding: 8px;"></td>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template3':
+                        for (i = 0; i < nCol; i++) {
+                            switch (i % 2) {
+                                case 0:
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;border-bottom-width:2px;padding: 8px;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                                case 1:
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;border-bottom-width:2px;padding: 8px;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template4':
+                        for (i = 0; i < nCol; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //第一欄特別處理 (只 show 一次，不會重複)
+                                    sHeadColList += '<td style="border:1px solid #dc6900;padding:8px;background-color:#dc6900;border-bottom-color:#fff;color:#fff;"></td>';
+                                    sColList1 += '<td style="border:1px solid #dc6900;padding:8px;background-color:#dc6900;border-bottom-color:#fff;color:#fff;"></td>';
+                                    sColList2 += '<td style="border:1px solid #dc6900;padding:8px;background-color:#dc6900;border-bottom-color:#fff;color:#fff;"></td>';
+                                    break;
+                                case 0:
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                                case 1:
+                                    sHeadColList += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template5':
+                        for (i = 0; i < nCol; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //第一欄特別處理 (只 show 一次，不會重複)
+                                    sHeadColList += '<td style="border:1px solid #dc6900;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                                case 0:
+                                    sHeadColList += '<td style="border:1px solid #dc6900;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                                case 1:
+                                    sHeadColList += '<td style="border:1px solid #dc6900;padding:8px;background-color:#dc6900;color:#fff;"></td>';
+                                    sColList1 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    sColList2 += '<td style="border: 1px solid #dc6900;padding: 8px;"></td>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    default:
+                        alert('沒有這個範本 table.col 設定: ' + sTemplateID);
+                        return false;
+                        break;
+                }
+
+                //用 TamplateID 選 Row tag
+                switch (sTemplateID) {
+                    case 'Template1':
+                        for (i = 0; i < nRow; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //表頭
+                                    sHTMLContent += '<tr>' + sHeadColList + '</tr>';
+                                    break;
+                                case 0: //第一種列顏色
+                                    sHTMLContent += '<tr style="background-color: #f6dabf;">' + sColList1 + '</tr>';
+                                    break;
+                                case 1: //第二種列顏色
+                                    sHTMLContent += '<tr>' + sColList2 + '</tr>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template2':
+                        for (i = 0; i < nRow; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //表頭
+                                    sHTMLContent += '<tr style="background-color: #fdf4e5;">' + sHeadColList + '</tr>';
+                                    break;
+                                case 0: //第一種列顏色
+                                    sHTMLContent += '<tr style="background-color: #f6dabf;">' + sColList1 + '</tr>';
+                                    break;
+                                case 1: //第二種列顏色
+                                    sHTMLContent += '<tr style="background-color: #fdf4e5;">' + sColList2 + '</tr>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template3':
+                        for (i = 0; i < nRow; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //表頭
+                                    sHTMLContent += '<tr style="background-color: #fff;">' + sHeadColList + '</tr>';
+                                    break;
+                                case 0: //第一種列顏色
+                                    sHTMLContent += '<tr style="background-color: #f6dabf;">' + sColList1 + '</tr>';
+                                    break;
+                                case 1: //第二種列顏色
+                                    sHTMLContent += '<tr style="background-color: #fff;">' + sColList2 + '</tr>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template4':
+                        for (i = 0; i < nRow; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //表頭
+                                    sHTMLContent += '<tr>' + sHeadColList + '</tr>';
+                                    break;
+                                case 0:	//第一種列顏色
+                                    sHTMLContent += '<tr style="background-color: #f6dabf;">' + sColList1 + '</tr>';
+                                    break;
+                                case 1: //第二種列顏色
+                                    sHTMLContent += '<tr>' + sColList2 + '</tr>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    case 'Template5':
+                        for (i = 0; i < nRow; i++) {
+                            switch ((i - 1) % 2) {
+                                case -1: //表頭
+                                    sHTMLContent += '<tr>' + sHeadColList + '</tr>';
+                                    break;
+                                case 0: //第一種列顏色
+                                    sHTMLContent += '<tr>' + sColList1 + '</tr>';
+                                    break;
+                                case 1: //第二種列顏色
+                                    sHTMLContent += '<tr>' + sColList2 + '</tr>';
+                                    break;
+                            }
+                        }
+
+                        break;
+                    default:
+                        alert('沒有這個範本 table.row 設定: ' + sTemplateID);
+                        return false;
+                        break;
+                }
+
+                sHTMLContent += '</table>';
+            } else {
+                alert('請輸入大於 0 的整數');
+            }
+
+            parent.PwCTW.CKEdit.insertHTML(sHTMLContent);
+            parent.CloseBlockUI();
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'custom-PwCfont';
+            src: local("Microsoft JhengHei");
+            unicode-range: U+4E00-9FFF;
+        }
+
+        @font-face {
+            font-family: 'custom-PwCfont';
+            src: local("Georgia");
+            unicode-range: U+00-024F;
+        }
+
+        * {
+            font-family: 'custom-PwCfont';
+            font-size: 15px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #MesgSection {
+            background-color: #D04A02;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+            height: 45px;
+            line-height: 45px;
+            padding: 0 15px;
+            border: 1px solid #D04A02;
+            border-radius: 5px 5px 0 0;
+        }
+
+        input[type=text] {
+            font-family: Arial !important;
+            width: 60px;
+            margin-right: 15px;
+            border: 1px solid #cccccc;
+        }
+
+        input[type=radio] {
+            vertical-align: top;
+            margin: 0 3px 0 1px;
+        }
+
+        input[type=button] {
+            color: #D04A02;
+            background-color: #fff;
+            padding: 6px 40px;
+            margin: 0 25px;
+            line-height: 22px;
+            border-radius: 5px;
+            border: 1px solid #D04A02;
+        }
+
+            input[type=button]:hover {
+                color: #fff;
+                background-color: #D04A02;
+            }
+
+        table {
+            margin: 15px auto;
+            border-collapse: collapse;
+        }
+
+            table tbody tr:nth-child(3) td:not(:last-child) {
+                padding-right: 15px;
+            }
+    </style>
+</head>
+<body>
+    <div id="MesgSection">Insert A Table</div>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>列: <input id="btnRow" type="text" value="5" ></input></td>
+                    <td>欄: <input id="btnCol" type="text" value="5" ></input></td>
+                    <td>寬: <input id="btnWidth" type="text" value="500" ></input></td>
+                </tr>
+                <tr><td style="line-height: normal!important; padding: 15px 0 2px 0;">表格樣式</td></tr>
+                <tr id="trParamList">
+                    <!-- These td tags will be replaced by the script above -->
+                    <td>
+                        <input id="t1" type="radio" name="Table" value="Template1" ></input>
+                        <img name="Table" src="img/TableTemplate-1.jpg" />
+                    </td>
+                    <td>
+                        <input id="t2" type="radio" name="Table" value="Template2" ></input>
+                        <img name="Table" src="img/TableTemplate-2.jpg" />
+                    </td>
+                    <td>
+                        <input id="t3" type="radio" name="Table" value="Template3" ></input>
+                        <img name="Table" src="img/TableTemplate-3.jpg" />
+                    </td>
+                    <td>
+                        <input id="t4" type="radio" name="Table" value="Template4" ></input>
+                        <img name="Table" src="img/TableTemplate-4.jpg" />
+                    </td>
+                    <td>
+                        <input id="t5" type="radio" name="Table" value="Template5" ></input>
+                        <img name="Table" src="img/TableTemplate-5.jpg" />
+                    </td>
+                    <!-- These td tags will be replaced by the script above -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="background-color: #f6f6f6; height: 55px; line-height: 55px; text-align: center; border-radius: 0 0 5px 5px; border-top: 1px solid #ddd;">
+        <input type="button" value="插入" onclick="getParam();" ></input>
+        <input type="button" value="關閉" onclick="parent.CloseBlockUI();" ></input>
+    </div>
+</body>
+</html>
